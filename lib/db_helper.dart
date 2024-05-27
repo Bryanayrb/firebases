@@ -11,7 +11,7 @@ class SQLHelper {
   }
 
   static Future<sql.Database> db() async {
-    return sql.openDatabase("newdb.db", version: 1,
+    return sql.openDatabase("newdatabase.db", version: 1,
         onCreate: (sql.Database database, int version) async {
       await createTables(database);
     });
@@ -53,6 +53,7 @@ class SQLHelper {
     final db = await SQLHelper.db();
     try{
       await db.delete('data', where: "id = ?", whereArgs: [id]);
+    // ignore: empty_catches
     } catch(e) {}
   }
 }
